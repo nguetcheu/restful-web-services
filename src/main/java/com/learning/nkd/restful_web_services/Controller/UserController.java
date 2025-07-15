@@ -45,4 +45,9 @@ public class UserController {
 
         return ResponseEntity.created(location).body(savedUser);
     }
+
+    @DeleteMapping
+    public ResponseEntity<User> deleteUser(@Valid @RequestBody User user) {
+        return new ResponseEntity<>(userService.deleteById(user.getId()), HttpStatus.OK);
+    }
 }

@@ -28,4 +28,12 @@ public class UserService {
     public User save(User user) {
         return userRepository.save(user);
     }
+
+    public User deleteById(int id) {
+        User user = findOne(id);
+        if (user != null) {
+            userRepository.delete(user);
+        }
+        return null;
+    }
 }
