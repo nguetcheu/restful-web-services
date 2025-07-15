@@ -8,7 +8,7 @@ import jakarta.persistence.*;
 public class Post {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String description;
@@ -16,6 +16,15 @@ public class Post {
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
     private User user;
+
+    public Post() {
+
+    }
+
+    public Post(String description, User user) {
+        this.description = description;
+        this.user = user;
+    }
 
     public Integer getId() {
         return id;
@@ -31,5 +40,13 @@ public class Post {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
