@@ -1,13 +1,12 @@
 package com.learning.nkd.restful_web_services.Entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 public class User {
@@ -20,6 +19,10 @@ public class User {
     @Size(min = 2, message = "Le nom doit contenir au moins 2 caractères")
     private String name;
     private LocalDate birthday;
+
+    @OneToMany(mappedBy = "user")
+    @JsonIgnore
+    private List<Post> posts;
 
     public User() {
     }
